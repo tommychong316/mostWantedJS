@@ -44,16 +44,7 @@ function app(people) {
 
 //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
 // HINT: Look for a person-object stringifier utility function to help
-function findPersonInfo(foundPerson, displayPerson) {
-    // loop to fine the requested info in the array
-    let foundPersonInfo = foundPerson.filter(function(person){
-        if(person.includes(displayPerson) === True){
-            return displayPerson
-        }
-    })
 
-    return foundPersonInfo//the found object
-}
 
 
 /**
@@ -77,11 +68,9 @@ function mainMenu(person, people) {
     // Routes our application based on the user's input
     switch (displayOption) {
         case "info":
-            
-            let personInfo = findPersonInfo(people, person[0]);
-            displayPerson(personInfo)
-
-                //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
+            //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
+            let personInfo = findPersonInfo(person);
+            alert(personInfo)
             break;
         case "family":
             //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
@@ -166,8 +155,13 @@ function displayPerson(person) {
     //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
-// End of displayPerson()
 
+function findPersonInfo(foundPerson) {
+    let personInfo = foundPerson.map(function(pi){
+        return `First Name: ${pi.firstName}\nLast Name: ${pi.lastName}\nGender: ${pi.gender}\nDOB: ${pi.dob}\nHeight: ${pi.height}\nWeight: ${pi.weight}\nEyecolor: ${pi.eyeColor}\nOccupation: ${pi.occupation}`
+    })
+    return personInfo
+}
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
