@@ -44,10 +44,15 @@ function app(people) {
 
 //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
 // HINT: Look for a person-object stringifier utility function to help
-function findPersonInfo(people, displayPerson) {
+function findPersonInfo(foundPerson, displayPerson) {
     // loop to fine the requested info in the array
+    let foundPersonInfo = foundPerson.filter(function(person){
+        if(person.includes(displayPerson) === True){
+            return displayPerson
+        }
+    })
 
-    return //the found object
+    return foundPersonInfo//the found object
 }
 
 
@@ -73,14 +78,10 @@ function mainMenu(person, people) {
     switch (displayOption) {
         case "info":
             
-
-            
             let personInfo = findPersonInfo(people, person[0]);
             displayPerson(personInfo)
 
                 //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
-    
-            
             break;
         case "family":
             //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
