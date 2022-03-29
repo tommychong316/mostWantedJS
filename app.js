@@ -65,8 +65,15 @@ function mainMenu(person, people) {
         case "info":
             //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
+            function findPersonInfo(displayPerson) 
+            
+
+            
             let personInfo = findPersonInfo(person[0]);
-            alert(personInfo);
+            alert(personInfo, mainMenu);
+                //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
+    
+            
             break;
         case "family":
             //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
@@ -82,7 +89,6 @@ function mainMenu(person, people) {
             break;
         case "restart":
             // Restart app() from the very beginning
-            app(people);
             break;
         case "quit":
             // Stop application execution
@@ -139,6 +145,16 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo +=`Weight: ${person.weight}\n`;
+    personInfo +=`Eye Color: ${person.eyeColor}\n`;
+    personInfo +=`Occupation: ${person.occupation}\n`;
+    personInfo +=`Parents: ${person.parents}\n`;
+    personInfo +=`Current Spouse ${person.currentSpouse}\n`;
+   
+
     //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
