@@ -42,6 +42,15 @@ function app(people) {
 }
 // End of app()
 
+//! TODO: Declare a findPersonInfo function //////////////////////////////////////////
+// HINT: Look for a person-object stringifier utility function to help
+function findPersonInfo(people, displayPerson) {
+    // loop to fine the requested info in the array
+
+    return //the found object
+}
+
+
 /**
  * After finding a single person, we pass in the entire person-object that we found,
  * as well as the entire original dataset of people. We need people in order to find
@@ -63,14 +72,12 @@ function mainMenu(person, people) {
     // Routes our application based on the user's input
     switch (displayOption) {
         case "info":
-            //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
-            // HINT: Look for a person-object stringifier utility function to help
-            function findPersonInfo(displayPerson) 
             
 
             
-            let personInfo = findPersonInfo(person[0]);
-            alert(personInfo, mainMenu);
+            let personInfo = findPersonInfo(people, person[0]);
+            displayPerson(personInfo)
+
                 //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
     
             
