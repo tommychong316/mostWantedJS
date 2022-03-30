@@ -72,9 +72,7 @@ function mainMenu(person, people) {
       break;
     case "family":
       //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
-      // HINT: Look for a people-collection stringifier utility function to help
-      let personFamily = findPersonFamily(person[0], people);
-      alert(personFamily);
+      findPersonFamily(person[0], people);
       break;
     case "descendants":
       //! TODO: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -153,7 +151,6 @@ function displayPerson(person) {
   alert(personInfo);
 }
 
-
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
@@ -198,4 +195,45 @@ function findPersonInfo(person) {
 }
 
 function findPersonFamily(person) {
-  if(person.id.includes())
+  let foundFamily = `Current Spouse: ${person.foundSpouse}\n`;
+  foundFamily += `Parents: ${person.foundParents}\n`;
+  foundFamily += `Siblings: ${person.foundSiblings}\n`;
+
+  alert(foundFamily);
+}
+
+function findPersonSpouse(people) {
+  let foundSpouse = people.filter(function (person) {
+    if (person.id === person.currentSpouse) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return foundSpouse;
+}
+
+function findPersonParents(people) {
+  let foundParents = people.filter(function (person) {
+    if (person.id === person.parents[0] || person.id === person.parents[1]) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return foundParents;
+}
+
+function findPersonSiblings(people) {
+  let foundSiblings = people.filter(function (person) {
+    if (
+      person.parents.includes(person.parents[0]) ||
+      (person.parents[1] && !person[0])
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return foundSiblings;
+}
