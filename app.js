@@ -131,9 +131,7 @@ function displayPeople(people) {
   );
 }
 // End of displayPeople()
-function findPersonFamily(person) {
-  if(person.id.includes())
-}
+
 /**
  * This function will be useful for STRINGIFYING a person-object's properties
  * in order to easily send the information to the user in the form of an alert().
@@ -155,9 +153,7 @@ function displayPerson(person) {
   alert(personInfo);
 }
 
-function findPersonInfo(person) {
-  displayPerson(person);
-}
+
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
@@ -197,3 +193,9 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+function findPersonInfo(person) {
+  displayPerson(person);
+}
+
+function findPersonFamily(person) {
+  if(person.id.includes())
