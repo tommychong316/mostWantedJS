@@ -195,16 +195,24 @@ function findPersonInfo(person) {
 }
 
 function findPersonFamily(person) {
-  let foundFamily = `Current Spouse: ${person.foundSpouse}\n`;
-  foundFamily += `Parents: ${person.foundParents}\n`;
-  foundFamily += `Siblings: ${person.foundSiblings}\n`;
+  someSpouse = findPersonSpouse(person); // an id.
+  someParents = findPersonParents(person); // an array
+  someSibs = findPersonSiblings(person); // an array
+
+  // "stringify" function and then use the alert/print/console
+
+  // create a new object of the collect data
+
+  let foundFamily = `Current Spouse: ${someSpouse}\n`;
+  foundFamily += `Parents: ${someParents}\n`;
+  foundFamily += `Siblings: ${someSibs}\n`;
 
   alert(foundFamily);
 }
 
-function findPersonSpouse(people) {
-  let foundSpouse = people.filter(function (person) {
-    if (person.id === person.currentSpouse) {
+function findPersonSpouse(person) {
+  let foundSpouse = person.filter(function (curSpouse) {
+    if (curSpouse.id === person.currentSpouse) {
       return true;
     } else {
       return false;
@@ -213,8 +221,8 @@ function findPersonSpouse(people) {
   return foundSpouse;
 }
 
-function findPersonParents(people) {
-  let foundParents = people.filter(function (person) {
+function findPersonParents(person) {
+  let foundParents = person.filter(function (person) {
     if (person.id === person.parents[0] || person.id === person.parents[1]) {
       return true;
     } else {
@@ -224,8 +232,8 @@ function findPersonParents(people) {
   return foundParents;
 }
 
-function findPersonSiblings(people) {
-  let foundSiblings = people.filter(function (person) {
+function findPersonSiblings(person) {
+  let foundSiblings = person.filter(function (person) {
     if (
       person.parents.includes(person.parents[0]) ||
       (person.parents[1] && !person[0])
