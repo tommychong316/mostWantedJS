@@ -145,8 +145,6 @@ function displayPerson(person) {
   personInfo += `Weight: ${person.weight}\n`;
   personInfo += `Eye Color: ${person.eyeColor}\n`;
   personInfo += `Occupation: ${person.occupation}\n`;
-  personInfo += `Parents: ${person.parents}\n`;
-  personInfo += `Current Spouse ${person.currentSpouse}\n`;
 
   //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
   alert(personInfo);
@@ -213,4 +211,16 @@ function findPersonFamily(person, people) {
     }
   });
   return allFamily;
+}
+
+function findPersonDescendants(person, people) {
+  let children = " ";
+  let grandchildren = " ";
+
+  let descendants = people.filter(function (el) {
+    if (person.id === el.parents[0] || person.id === el.parents[1]) {
+      children += el.firstName + " " + el.lastName + " is their child";
+    }
+  });
+  return children;
 }
