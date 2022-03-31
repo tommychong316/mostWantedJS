@@ -79,7 +79,7 @@ function mainMenu(person, people) {
       //! TODO: Declare a findPersonDescendants function //////////////////////////////////////////
       // HINT: Review recursion lecture + demo for bonus user story
       let personDescendants = findPersonDescendants(person[0], people);
-      alert(personDescendants);
+      displayPeople(personDescendants);
       break;
     case "restart":
       // Restart app() from the very beginning
@@ -212,41 +212,25 @@ function findPersonFamily(person, people) {
   });
   return allFamily;
 }
-function addPersonChildren(person, people) {
-  let childrenadded = people.map(function (el) {
-    if (el.parents[0] === person.id || el.parents[1] === person.id) {
-      person.children = el.id;
-    }
-    return childrenadded;
-  });
-}
-function findPersonDescendants(person, people) {
+
+function findPersonDescendants(person, people, minions) {
   let children = " ";
-  let grandchildren = " ";
+  let grandchildren = [];
   
-  let descendants = people.filter(function (el) {
+  let personChildren = people.filter(function (el) {
     if (el.parents[0] === person.id || el.parents[1] === person.id) {
       return true;
-    }
-    else{
-      return false
-    }
-    
+    } 
   });
-  for (let i = 0; i < descendants.length; i++) {
-    console.log(findPersonDescendants(descendants));
-  };
+
+  for(let grandChild = 0; grandChild < personChildren.length; grandChild++) {
+      people.filter(function (el) {
+        if (el.parents[0] === personChildren[grandChild].id || el.parents[1] === personChildren[grandChild].id) {
+          personChildren.push(el)
+        } 
+      });
+  }
+  console.log(personChildren)
+  return personChildren
 }
 
-// function findPersonDescendants(person, people) {
-//   let momPop = person.parents;
-//   allMomPop = [person];
-
-//   if (momPop.length === 0) {
-//     return all;
-//   }
-//   for (let grandParent = 0; grandParent < momPop.length; grandParent++) {
-//     momPop = momPop.concat(findPersonDescendants(momPop[grandParent]));
-//   }
-//   return allMomPop;
-// }
