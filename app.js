@@ -137,7 +137,7 @@ function displayPeople(people) {
  * @param {Object} person       A singular object.
  */
 function displayPerson(person) {
-  let personInfo = `First Name: ${person.firstName}\n`;
+  var personInfo = `First Name: ${person.firstName}\n`;
   personInfo += `Last Name: ${person.lastName}\n`;
   personInfo += `Gender: ${person.gender}\n`;
   personInfo += `DOB: ${person.dob}\n`;
@@ -212,15 +212,47 @@ function findPersonFamily(person, people) {
   });
   return allFamily;
 }
-
+function addPersonChildren(person, people) {
+  let childrenadded = people.map(function (el) {
+    if (el.parents[0] === person.id || el.parents[1] === person.id) {
+      person.children = el.id;
+    }
+    return childrenadded;
+  });
+}
 function findPersonDescendants(person, people) {
   let children = " ";
   let grandchildren = " ";
-
+  
   let descendants = people.filter(function (el) {
-    if (person.id === el.parents[0] || person.id === el.parents[1]) {
+    if (el.parents[0] === person.id || el.parents[1] === person.id) {
       children += el.firstName + " " + el.lastName + " is their child";
     }
+    if (
+      el.parents[0] === person.children ||
+      el.parents[1] === person.children
+    ) {
+      grandchildren += el.firstName + " " + el.lastName + " is their child";
+    }
+  });
+  let childrenadded = people.map(function (el) {
+    if (el.parents[0] === person.id || el.parents[1] === person.id) {
+      person.children = el.id;
+    }
+    return true;
   });
   return children;
 }
+
+// function findPersonDescendants(person, people) {
+//   let momPop = person.parents;
+//   allMomPop = [person];
+
+//   if (momPop.length === 0) {
+//     return all;
+//   }
+//   for (let grandParent = 0; grandParent < momPop.length; grandParent++) {
+//     momPop = momPop.concat(findPersonDescendants(momPop[grandParent]));
+//   }
+//   return allMomPop;
+// }
