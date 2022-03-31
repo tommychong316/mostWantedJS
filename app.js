@@ -72,7 +72,8 @@ function mainMenu(person, people) {
       break;
     case "family":
       //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
-      findPersonFamily(person[0], people);
+      let personFamily = findPersonFamily(person[0], people);
+      alert(personFamily);
       break;
     case "descendants":
       //! TODO: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -194,54 +195,22 @@ function findPersonInfo(person) {
   displayPerson(person);
 }
 
-function findPersonFamily(person) {
-  someSpouse = findPersonSpouse(person); // an id.
-  someParents = findPersonParents(person); // an array
-  someSibs = findPersonSiblings(person); // an array
-
-  // "stringify" function and then use the alert/print/console
-
-  // create a new object of the collect data
-
-  let foundFamily = `Current Spouse: ${someSpouse}\n`;
-  foundFamily += `Parents: ${someParents}\n`;
-  foundFamily += `Siblings: ${someSibs}\n`;
-
-  alert(foundFamily);
-}
-
-function findPersonSpouse(person) {
-  let foundSpouse = person.filter(function (curSpouse) {
-    if (curSpouse.id === person.currentSpouse) {
-      return true;
-    } else {
-      return false;
+function findPersonFamily(person, people) {
+  let allFamily = " ";
+  let personFamily = people.filter(function (el) {
+    if (el.id === person.parents[0] || el.id === person.parents[1]) {
+      allFamily += el.firstName + " " + el.lastName + " is the parent \n";
     }
-  });
-  return foundSpouse;
-}
-
-function findPersonParents(person) {
-  let foundParents = person.filter(function (person) {
-    if (person.id === person.parents[0] || person.id === person.parents[1]) {
-      return true;
-    } else {
-      return false;
+    if (el.id === person.currentSpouse) {
+      allFamily += el.firstName + " " + el.lastName + " is the spouse \n";
     }
-  });
-  return foundParents;
-}
-
-function findPersonSiblings(person) {
-  let foundSiblings = person.filter(function (person) {
     if (
-      person.parents.includes(person.parents[0]) ||
-      (person.parents[1] && !person[0])
+      el.parents[(0, 1)] === person.parents[(0, 1)] &&
+      el.id !== person.id &&
+      person.parents[(0, 1)] !== undefined
     ) {
-      return true;
-    } else {
-      return false;
+      allFamily += el.firstName + " " + el.lastName + " is the sibling \n";
     }
   });
-  return foundSiblings;
+  return allFamily;
 }
