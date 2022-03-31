@@ -79,7 +79,7 @@ function mainMenu(person, people) {
       //! TODO: Declare a findPersonDescendants function //////////////////////////////////////////
       // HINT: Review recursion lecture + demo for bonus user story
       let personDescendants = findPersonDescendants(person[0], people);
-      alert(personDescendants);
+      console.log(personDescendants);
       break;
     case "restart":
       // Restart app() from the very beginning
@@ -219,8 +219,16 @@ function findPersonDescendants(person, people) {
 
   let descendants = people.filter(function (el) {
     if (person.id === el.parents[0] || person.id === el.parents[1]) {
-      children += el.firstName + " " + el.lastName + " is their child";
+      return true;
     }
   });
-  return children;
+
+  for (let i = 0; i < descendants.length; i++) {
+    if (person.id === person.parents[0] || person.id === person.parents[1]) {
+      return children;
+    }
+  }
+
+  console.log(descendants);
+  console.log(children);
 }
