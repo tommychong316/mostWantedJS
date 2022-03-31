@@ -6,7 +6,7 @@
 "use strict";
 
 // You may modify this for testing purposes.
-const data = [
+const people = [
   {
     id: 272822514,
     firstName: "Billy",
