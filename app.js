@@ -83,6 +83,7 @@ function mainMenu(person, people) {
       break;
     case "restart":
       // Restart app() from the very beginning
+      app(people);
       break;
     case "quit":
       // Stop application execution
@@ -216,21 +217,46 @@ function findPersonFamily(person, people) {
 function findPersonDescendants(person, people, minions) {
   let children = " ";
   let grandchildren = [];
-  
+
   let personChildren = people.filter(function (el) {
     if (el.parents[0] === person.id || el.parents[1] === person.id) {
       return true;
-    } 
+    }
   });
 
-  for(let grandChild = 0; grandChild < personChildren.length; grandChild++) {
-      people.filter(function (el) {
-        if (el.parents[0] === personChildren[grandChild].id || el.parents[1] === personChildren[grandChild].id) {
-          personChildren.push(el)
-        } 
-      });
+  for (let grandChild = 0; grandChild < personChildren.length; grandChild++) {
+    people.filter(function (el) {
+      if (
+        el.parents[0] === personChildren[grandChild].id ||
+        el.parents[1] === personChildren[grandChild].id
+      ) {
+        personChildren.push(el);
+      }
+    });
   }
-  console.log(personChildren)
-  return personChildren
+
+  return personChildren;
 }
 
+function searchByTrait(people) {
+  let gender = promptFor("What is the person's gender?", chars);
+  let height = promptFor("What is the person's height?", chars);
+  let weight = promptFor("What is the person's weight", chars);
+  let eyeColor = promptFor("What is the person's eye color?", chars);
+  let occupation = promptFor("What is the person's occupation?", chars);
+
+  let foundTrait = people.filter(function (person) {
+    if (
+      person.gender === gender &&
+      person.occupation === occupation &&
+      person.eyeColor === eyeColor &&
+      person.height == height &&
+      person.weight == weight
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return foundTrait[0];
+}
