@@ -226,22 +226,16 @@ function findPersonDescendants(person, people) {
   
   let descendants = people.filter(function (el) {
     if (el.parents[0] === person.id || el.parents[1] === person.id) {
-      children += el.firstName + " " + el.lastName + " is their child";
+      return true;
     }
-    if (
-      el.parents[0] === person.children ||
-      el.parents[1] === person.children
-    ) {
-      grandchildren += el.firstName + " " + el.lastName + " is their child";
+    else{
+      return false
     }
+    
   });
-  let childrenadded = people.map(function (el) {
-    if (el.parents[0] === person.id || el.parents[1] === person.id) {
-      person.children = el.id;
-    }
-    return true;
-  });
-  return children;
+  for (let i = 0; i < descendants.length; i++) {
+    console.log(findPersonDescendants(descendants));
+  };
 }
 
 // function findPersonDescendants(person, people) {
